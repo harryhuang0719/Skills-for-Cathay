@@ -6,7 +6,7 @@ AI-powered skill toolkit for PE/VC primary market work. Covers deal materials ge
 
 | Category | Skills | Output |
 |----------|--------|--------|
-| **Deck Generation** | cathay-ppt-template | Cathay-branded IC memos, pitch decks, client presentations (.pptx) |
+| **Deck Generation** | cathay-ppt-template | Cathay-branded IC memos, pitch decks, client presentations (.pptx) — 12 layouts, 16 slide templates |
 | **Financial Modeling** | cathay-excel-template | 3-statement models, DCF, PE returns analysis (.xlsx) |
 | **Market Sizing** | market-sizing | Bottom-up TAM/SAM/SOM with Excel output |
 | **Sector Analysis** | chain-screener | Supply chain mapping + Mermaid diagrams + Excel |
@@ -78,7 +78,7 @@ See [docs/setup.md](docs/setup.md) for detailed setup instructions.
 ## Key Features
 
 ### Cathay PPT Template
-- 16 pre-built slide templates (T1-T16): title, content, comparison, charts, SWOT, waterfall, funnel
+- 12 PowerPoint layouts + 16 pre-built slide templates (T1-T16): title, content, comparison, charts, SWOT, waterfall, funnel
 - CJK-aware text fitting engine (Chinese character width handling)
 - 8-rule QC automation with auto-fix pipeline
 - Brand colors: Maroon (#800000), Gold (#E8B012), fonts: Calibri + KaiTi
@@ -100,6 +100,13 @@ See [docs/setup.md](docs/setup.md) for detailed setup instructions.
 - 7-agent Mixture-of-Agents: Macro Strategist → Forensic Accountant → Industry Expert → Bull → Bear → Rebuttals → CIO
 - Valuation paradigms: DCF, P/E-Growth, EV/EBITDA, NAV, FCF Yield
 - Quick mode (10-15 slides) and Deep mode (25-40 slides + Excel)
+
+## Important Notes
+
+- **Skills are Claude Code / OpenClaw skill definitions** — they describe how AI agents perform tasks, not standalone CLI tools.
+- `chain-screener` and `stock-screener` scripts depend on an external quant trading system (`QUANT_ROOT`). They are included as reference implementations.
+- `stock-screener` requires a running FastAPI service (part of the quant system) to execute.
+- `stock-compare` references external scripts (`market_quote.py`, `run_backtest.py`) from the quant system.
 
 ## License
 

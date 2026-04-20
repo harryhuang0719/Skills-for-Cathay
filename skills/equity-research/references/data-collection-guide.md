@@ -28,7 +28,7 @@ for p in [
 ## 1. FMP API (Primary Financial Data)
 
 ```python
-FMP_KEY = os.getenv('FMP_API_KEY', '')  # KwoqhCX...
+FMP_KEY = os.getenv('FMP_API_KEY', '')
 BASE = "https://financialmodelingprep.com/stable"
 
 def fmp(endpoint, **params):

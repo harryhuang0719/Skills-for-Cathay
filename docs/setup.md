@@ -64,10 +64,10 @@ In Claude Code, these skills should appear in your skill list:
 4. For production use, consider the Starter plan ($14/mo, 750 calls/day)
 
 ### Google Gemini
-1. Go to https://ai.google.dev/
-2. Create a project in Google Cloud Console
-3. Enable the Generative AI API
-4. Generate an API key
+1. Go to https://ai.google.dev/gemini-api/docs/api-key
+2. Sign in with your Google account
+3. Click "Create API key" in Google AI Studio
+4. Copy the generated key
 
 ### Anthropic Claude
 1. Go to https://console.anthropic.com/
