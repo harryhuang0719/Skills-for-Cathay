@@ -2,7 +2,22 @@
 
 这是我整理的一套 AI Skills，专门给我们做一级市场 PE/VC 工作用的。涵盖了做 deck、建模型、做 market sizing、产业链分析这些日常高频场景。
 
-简单来说：你装好 Claude Code 之后，把这些 skill 放到对应目录，就能直接用自然语言让 AI 帮你出 PPT、建财务模型、做行业分析了。省掉大量重复劳动。
+简单来说：把这些 skill 喂给任何 AI agent，就能直接用自��语言让它帮你出 PPT、建财务模��、做行业分析。��掉大量重复劳动。
+
+### 兼容哪些平台
+
+这些 skill 本质上是 **结构化的 Markdown 指令 + Python 辅助库**，不绑定任何特定平台。以下环境都能直接用：
+
+| 平台 | 怎么用 |
+|------|--------|
+| **Claude Code** | 放到 `~/.claude/skills/` 目录，自动识别 |
+| **OpenClaw Agent** | 放到 `~/.openclaw/workspace/skills/` 目录 |
+| **OpenAI Codex CLI** | 作为 instructions 文件引用（`AGENTS.md` 或 `--instructions`） |
+| **Cursor / Windsurf** | 放到项目 `.cursor/rules/` 或作为 context 引入 |
+| **Gemini CLI** | 通过 `GEMINI.md` 或 skill activate 引用 |
+| **任何 LLM Agent** | 直接把 SKILL.md 内容贴到 system prompt 里就行 |
+
+核心原理：每个 skill 的 `SKILL.md` 就是一份详细的工作指南——告诉 AI "遇到这类任务时该怎么做、按什么步骤、注意什么规则"。不管是 Claude、GPT、Gemini 还是其他模型，只要能读懂 markdown，就能按照指南执行。
 
 ---
 
@@ -97,6 +112,8 @@
 
 ## 怎么用
 
+下面以 Claude Code 为例，其他平台类似——核心就是把 SKILL.md 放到 agent 能读到的地方。
+
 ### 第一步：装 Claude Code
 
 如果你还没装，先装 Claude Code CLI：
@@ -178,6 +195,27 @@ export TUSHARE_TOKEN="你的token"
 # 深度研究
 "用深度模式分析 NVDA，我要看多空双方的完整论点"
 ```
+
+---
+
+## 其他平台怎么用
+
+### OpenAI Codex CLI
+```bash
+# 在项目根目录创建 AGENTS.md，引用 skill
+echo "请参考 skills/market-sizing/SKILL.md 中的规则来执行 market sizing 任务" > AGENTS.md
+codex "帮我做一个中国储能市场的 TAM sizing"
+```
+
+### Cursor / Windsurf
+把 SKILL.md 加到项目的 rules 或 context 里：
+```bash
+cp templates/cathay-ppt/SKILL.md .cursor/rules/cathay-ppt.md
+```
+然后在 Cursor 里直接说 "帮我做一个 IC memo deck"，它就会按规则执行。
+
+### 通用方式（任何 LLM）
+最简单粗暴的方式：直接把 SKILL.md 的内容复制到对话的 system prompt 里，然后正常对话就行。Python lib 文件需要在本地有对应环境。
 
 ---
 
