@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "source": "Reverse-engineered from market_sizing_IDC_v8_20260314_184408.xlsx (0 FAIL, 1 WARN)",
+    "validated": "2026-03-14",
+    "notes": "v8 passed all hard rules. Only WARN: Government ASP flat across forecast years."
+  },
+  "title": "China IDC Colocation Market Sizing",
+  "market_boundary": "中国第三方IDC托管收入，不含运营商自用和云服务商自建",
+  "unit": "MW IT Load",
+  "unit_definition": "1 MW IT Load = rated IT power capacity of the data center",
+  "revenue_unit": "$M",
+  "asp_label": "$M/MW/year",
+  "years": ["2022", "2023", "2024", "2025", "2026", "2027E", "2028E", "2029E"],
+  "demand": {
+    "anchors": {
+      "industry_revenue_m": 50000,
+      "top1_player_volume": 1996,
+      "typical_asp": 7.5,
+      "anchor_source": "信通院/赛迪 2024: China IDC market ~RMB350-400B (~$48-55B)"
+    },
+    "segments": [
+      {
+        "name": "Hyperscale Cloud Providers",
+        "sub_segments": [
+          {"name": "Alibaba Cloud", "volumes": [1500, 1700, 1950, 2200, 2500, 2800, 3100, 3400], "source": "Estimated based on market share and capacity expansion plans"},
+          {"name": "Tencent Cloud", "volumes": [1200, 1350, 1500, 1700, 1900, 2100, 2300, 2500], "source": "Estimated based on market share and capacity expansion plans"}
+        ],
+        "asp_estimates": [6.5, 6.3, 6.1, 5.9, 5.7, 5.5, 5.3, 5.1],
+        "asp_rationale": "Hyperscalers have strongest bargaining power; ASP declining ~3-4% YoY due to volume discounts and competition"
+      },
+      {
+        "name": "Enterprise Customers (Finance)",
+        "sub_segments": [
+          {"name": "Banks", "volumes": [500, 520, 540, 560, 580, 600, 620, 640], "source": "Industry reports and expert interviews"},
+          {"name": "Securities Firms", "volumes": [300, 310, 320, 330, 340, 350, 360, 370], "source": "Industry reports and expert interviews"}
+        ],
+        "asp_estimates": [9.5, 9.4, 9.3, 9.2, 9.1, 9.0, 8.9, 8.8],
+        "asp_rationale": "Finance sector pays premium for compliance, redundancy, proximity to exchanges; slight decline as market matures"
+      },
+      {
+        "name": "Government & Public Sector",
+        "sub_segments": [
+          {"name": "Government Agencies", "volumes": [400, 410, 420, 430, 440, 450, 460, 470], "source": "Industry reports and expert interviews"},
+          {"name": "State-Owned Enterprises", "volumes": [350, 360, 370, 380, 390, 400, 410, 420], "source": "Industry reports and expert interviews"}
+        ],
+        "asp_estimates": [8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0],
+        "asp_rationale": "Government contracts are fixed-price multi-year; ASP stable. [WARN: flat forecast — acceptable for this segment]"
+      },
+      {
+        "name": "Other Enterprises (Manufacturing, Retail)",
+        "sub_segments": [
+          {"name": "Manufacturing", "volumes": [600, 620, 640, 660, 680, 700, 720, 740], "source": "Industry reports and expert interviews"},
+          {"name": "Retail", "volumes": [550, 570, 590, 610, 630, 650, 670, 690], "source": "Industry reports and expert interviews"}
+        ],
+        "asp_estimates": [7.5, 7.4, 7.3, 7.2, 7.1, 7.0, 6.9, 6.8],
+        "asp_rationale": "Mid-tier pricing; gradual decline as cloud migration reduces on-prem demand"
+      },
+      {
+        "name": "AI/ML and High-Performance Computing",
+        "sub_segments": [
+          {"name": "AI Training", "volumes": [100, 150, 220, 300, 400, 520, 650, 800], "source": "Industry reports and expert interviews"},
+          {"name": "ML Inference", "volumes": [50, 75, 110, 150, 200, 260, 325, 400], "source": "Industry reports and expert interviews"}
+        ],
+        "asp_estimates": [10.0, 9.8, 9.6, 9.4, 9.2, 9.0, 8.8, 8.6],
+        "asp_rationale": "Highest ASP due to power density and cooling requirements; declining as GPU efficiency improves"
+      }
+    ],
+    "top_down_estimates": [
+      {"year": "2024", "value": 50000, "source": "信通院/赛迪 consensus", "unit": "$M"}
+    ],
+    "price_mechanism": {
+      "shortage_elasticity": 0.2,
+      "surplus_elasticity": -0.1,
+      "inventory_buffer_weeks": 4,
+      "structural_vs_cyclical": "Structural growth driven by digitalization and AI, with cyclical fluctuations based on economic conditions",
+      "price_floor_marginal_cost": 4.0
+    },
+    "asp_scenarios": {
+      "bull": [8.5, 8.4, 8.3, 8.2, 8.1, 8.0, 7.9, 7.8],
+      "base": [7.5, 7.4, 7.3, 7.2, 7.1, 7.0, 6.9, 6.8],
+      "bear": [6.5, 6.3, 6.1, 5.9, 5.7, 5.5, 5.3, 5.1]
+    }
+  },
+  "supply": {
+    "players": [
+      {
+        "name": "GDS Holdings",
+        "listed": true,
+        "ticker": "GDS",
+        "source_quality": "A",
+        "notes": "Leading independent IDC provider.",
+        "capacity": [1174.12, 1350.24, 1555.71, 1761.18, 1996.01, 2230.83, 2465.66, 2700.48],
+        "utilization": [0.75, 0.78, 0.82, 0.85, 0.87, 0.88, 0.89, 0.90],
+        "revenue_estimates": [6941.46, 7710.30, 8638.18, 9521.82, 10558.10, 11555.90, 12616.34, 13628.92],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "VNET Group",
+        "listed": true,
+        "ticker": "VNET",
+        "source_quality": "A",
+        "notes": "Another leading independent IDC provider. Note: VNET Group = 21Vianet, same company.",
+        "capacity": [880.59, 998.00, 1115.42, 1232.83, 1350.24, 1467.65, 1585.07, 1702.48],
+        "utilization": [0.70, 0.73, 0.76, 0.79, 0.81, 0.83, 0.85, 0.86],
+        "revenue_estimates": [5072.61, 5583.32, 6132.04, 6724.45, 7347.13, 7979.07, 8576.90, 9178.66],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "Chindata Group",
+        "listed": true,
+        "ticker": "CD",
+        "source_quality": "A",
+        "notes": "Focus on hyperscale deployments.",
+        "capacity": [704.47, 792.53, 880.59, 968.65, 1056.71, 1144.77, 1232.83, 1320.89],
+        "utilization": [0.78, 0.80, 0.83, 0.85, 0.87, 0.88, 0.89, 0.90],
+        "revenue_estimates": [4164.88, 4519.83, 4905.63, 5325.76, 5768.86, 6218.17, 6640.18, 7064.79],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "China Telecom IDC",
+        "listed": true,
+        "ticker": "601728.SH",
+        "source_quality": "A",
+        "notes": "Largest IDC provider in China, state-owned. Utilization declining as massive new capacity added.",
+        "capacity": [1761.18, 1878.60, 1996.01, 2113.42, 2230.83, 2348.25, 2465.66, 2583.07],
+        "utilization": [0.80, 0.79, 0.78, 0.77, 0.76, 0.75, 0.74, 0.73],
+        "revenue_estimates": [10252.01, 10634.90, 11091.00, 11619.84, 12190.79, 12766.52, 13280.35, 13795.81],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "China Unicom IDC",
+        "listed": true,
+        "ticker": "600050.SH",
+        "source_quality": "A",
+        "notes": "Major IDC provider in China, state-owned. Utilization declining as capacity expands faster than demand.",
+        "capacity": [1467.65, 1555.71, 1643.77, 1731.83, 1819.89, 1907.95, 1996.01, 2084.07],
+        "utilization": [0.75, 0.74, 0.73, 0.72, 0.71, 0.70, 0.69, 0.68],
+        "revenue_estimates": [8009.38, 8348.39, 8744.83, 9199.04, 9687.33, 10180.20, 10624.28, 11070.02],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "China Mobile IDC",
+        "listed": true,
+        "ticker": "600941.SH",
+        "source_quality": "A",
+        "notes": "Growing IDC provider in China, state-owned. Utilization rising as AI demand fills new capacity.",
+        "capacity": [1056.71, 1174.12, 1291.53, 1408.95, 1526.36, 1643.77, 1761.18, 1878.60],
+        "utilization": [0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79],
+        "revenue_estimates": [5873.54, 6380.94, 6931.87, 7531.38, 8163.48, 8804.49, 9406.92, 10013.09],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      },
+      {
+        "name": "Runze Technology",
+        "listed": true,
+        "ticker": "300442.SZ",
+        "source_quality": "B",
+        "notes": "Smaller IDC provider focusing on specific regions.",
+        "capacity": [176.12, 187.86, 199.60, 211.34, 223.08, 234.82, 246.57, 258.31],
+        "utilization": [0.65, 0.67, 0.69, 0.71, 0.73, 0.75, 0.77, 0.79],
+        "revenue_estimates": [961.13, 1010.32, 1066.44, 1129.71, 1197.31, 1265.65, 1328.04, 1390.71],
+        "revenue_source": "Annual report / Estimated: Output × avg ASP"
+      }
+    ]
+  },
+  "competitive_barriers": {
+    "technology": 3,
+    "scale_cost": 4,
+    "customer_lock_in": 3,
+    "capital_intensity": 5,
+    "regulatory": 4,
+    "resource_access": 4
+  },
+  "investment_conclusion": {
+    "attractiveness": 4,
+    "best_window": "2024-2026: AI-driven demand surge + supply constrained by power/land approvals",
+    "upside_catalyst": "AI training cluster buildout accelerates; government data sovereignty mandates increase captive demand",
+    "downside_risk": "Hyperscaler self-build reduces third-party demand; power grid constraints delay new capacity",
+    "proxy_tickers": "GDS (pure-play independent), VNET (diversified), 601728.SH (scale + policy support)",
+    "conviction": "B",
+    "notes": "Structural growth story intact; near-term risk from hyperscaler self-build and macro slowdown"
+  }
+}
