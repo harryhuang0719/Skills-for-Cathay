@@ -11,6 +11,15 @@ Template: `assets/template.pptx` (10.00" x 7.50", 4:3, 12 layouts)
 1. `references/ppt-generation-rules.md` — 全局PPT生成铁律（overflow prevention, bullet hierarchy, conclusion titles, font rules）
 2. `references/text-fitting-engine.md` — 文字高度计算引擎、auto-fit textbox、smart table、merge函数（**2026-03-25新增**）
 
+**Banker-grade 方法论**（**2026-04-24 新增**，做 IC memo / pitch deck / ≥8 页 deck 前必读）：
+3. `references/methodology-8phase.md` — 8 阶段流水线：规范加载→材料解析→论点提炼→**Ghost Deck**→大纲版式→样稿确认→逐页设计→质检交付
+4. `references/action-title-rules.md` — 每页标题 = 完整结论句（不是主题词），≤ 28 字带数字
+5. `references/design-philosophy.md` — 4 支柱（粗体排版/可见网格/克制色板/高信息密度）+ 禁用清单（禁词 / 饼图 / emoji / 渐变）
+6. `references/scenario-probing.md` — 7 条关键判断场景（规模语境/受众动线/灵魂页/数字诚实/继承vs重构/SVG 通道/跨页一致性）
+
+**视觉型页 SVG 通道**（可选，仅封面/divider/概念图/chart）：
+- `lib/svg_embed.py` — `svg_to_png()` + `embed_svg_slide()` + `assert_not_table()`。后端 cairosvg 或 svglib fallback。**不要**给表格/数字页用。
+
 所有使用此模板的 skill 都必须遵守。
 
 ## Quick Start — Using the lib/ modules
