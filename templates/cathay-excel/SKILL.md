@@ -9,6 +9,8 @@ Template: `assets/template.xlsx` (13 sheets, 4 historical + 5 forecast years)
 
 **MUST READ** `docs/specs/2026-04-20-excel-model-rebuild-design.md` for full architecture spec.
 
+**Deal-tested patterns** (CFF scoping, market-size placement, row padding, divider sheets, Return row order, salary inflation) — see `references/ib-deal-patterns.md`. Read this before shipping any model; checklist at bottom of that file.
+
 ## Quick Start
 
 ```python
