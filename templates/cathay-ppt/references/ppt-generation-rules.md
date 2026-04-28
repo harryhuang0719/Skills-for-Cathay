@@ -145,19 +145,19 @@ run.text = "季度收入 $13.64B"  # KaiTi或Calibri只能选一个
 | Risk Matrix | Full width table | `add_table()` |
 | Section Divider | Layout [11] | white on dark |
 
-**Grid常量 (从cathay-ppt-template)**:
+**Grid常量 (从cathay-ppt-template v2)**:
 ```python
-CL=10; CT=29.2; CW=234; CH=146; GAP_H=5; GAP_V=3
-HALF=(CW-GAP_H)/2          # 114.5mm
-THIRD=(CW-GAP_H*2)/3       # 74.7mm
-ONE_THIRD=(CW-GAP_H)*1/3   # 76.3mm
-TWO_THIRDS=(CW-GAP_H)*2/3  # 152.7mm
-ONE_QUARTER=(CW-GAP_H)*1/4 # 57.25mm
-THREE_QUARTER=(CW-GAP_H)*3/4 # 171.75mm
+CL=10; CT=31; CW=234; CH=150; GAP_H=6; GAP_V=4
+HALF=(CW-GAP_H)/2          # 114.0mm
+THIRD=(CW-GAP_H*2)/3       # 74.0mm
+ONE_THIRD=(CW-GAP_H)*1/3   # 76.0mm
+TWO_THIRDS=(CW-GAP_H)*2/3  # 152.0mm
+ONE_QUARTER=(CW-GAP_H)*1/4 # 57.0mm
+THREE_QUARTER=(CW-GAP_H)*3/4 # 171.0mm
 X1=CL                       # 10mm
-X2_HALF=CL+HALF+GAP_H       # 129.5mm
-X2_T23=CL+ONE_THIRD+GAP_H   # 91.3mm
-X2_Q34=CL+ONE_QUARTER+GAP_H # 72.25mm
+X2_HALF=CL+HALF+GAP_H       # 130.0mm
+X2_T23=CL+ONE_THIRD+GAP_H   # 92.0mm
+X2_Q34=CL+ONE_QUARTER+GAP_H # 73.0mm
 ```
 
 ---

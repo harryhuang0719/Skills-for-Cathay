@@ -1,8 +1,10 @@
 """
-Cathay PPT Template — Constants
-================================
-All layout, brand, and typography constants in one place.
-Imported by text_engine.py via `from constants import *`.
+Cathay PPT Template v3 — Constants
+====================================
+Single source of truth. Based on 阿维塔 template (10.00" x 7.50", 4:3).
+
+Key layout: left dark red vertical line (5mm wide, full height) on Layout [4].
+Content zone starts to the right of the red line.
 """
 
 import os
@@ -23,124 +25,127 @@ TEMPLATE = os.path.expanduser("~/.claude/skills/cathay-ppt-template/assets/templ
 # 2. BRAND COLORS
 # ============================================================================
 
-# ── Primary palette (一红主导 + 金点缀 + 灰分级) ──
-CATHAY_RED       = RGBColor(0x80, 0x00, 0x00)   # 主色 MAROON (60-70% visual weight)
-CATHAY_DARK_RED  = RGBColor(0x5E, 0x00, 0x00)   # 高对比 header (DARK_MAROON)
-CATHAY_GOLD      = RGBColor(0xE8, 0xB0, 0x12)   # 强调色 金 (badge, accent bar)
-CATHAY_LTGOLD    = RGBColor(0xF6, 0xDC, 0x92)   # 封面副文本 / 浅金 (PALE_GOLD)
-CATHAY_ACCENT    = RGBColor(0xE6, 0x00, 0x00)   # 强调红 (warnings, emphasis)
-CATHAY_PINK      = RGBColor(0xFF, 0x89, 0x89)   # 次级红 (bubble, risk chips)
-CATHAY_SOFT_PINK = RGBColor(0xFE, 0xD3, 0xD3)   # 最浅红底 (panel bg)
+CATHAY_RED       = RGBColor(0x80, 0x00, 0x00)   # 主色 MAROON
+CATHAY_DARK_RED  = RGBColor(0x5E, 0x00, 0x00)   # 高对比 header
+CATHAY_GOLD      = RGBColor(0xE8, 0xB0, 0x12)   # 强调金
+CATHAY_LTGOLD    = RGBColor(0xF6, 0xDC, 0x92)   # 浅金
+CATHAY_ACCENT    = RGBColor(0xE6, 0x00, 0x00)   # 强调红
+CATHAY_PINK      = RGBColor(0xFF, 0x89, 0x89)   # 次级红
+CATHAY_SOFT_PINK = RGBColor(0xFE, 0xD3, 0xD3)   # 最浅红底
 
-# ── Text & Neutral ──
-CATHAY_BLACK     = RGBColor(0x1A, 0x1A, 0x1A)   # 正文黑 (softer than pure black)
+CATHAY_BLACK     = RGBColor(0x1A, 0x1A, 0x1A)   # 正文黑
 CATHAY_WHITE     = RGBColor(0xFF, 0xFF, 0xFF)
 CATHAY_DARK_GREY = RGBColor(0x59, 0x59, 0x59)   # 次级文本
-CATHAY_GREY      = RGBColor(0x80, 0x80, 0x80)   # 辅助 / 引用 (MID_GRAY)
-CATHAY_LTGREY    = RGBColor(0xD9, 0xD9, 0xD9)   # table border / alt rows
-CATHAY_LIGHT_BG  = RGBColor(0xF2, 0xF2, 0xF2)   # 面板底色 (LIGHT_GRAY)
+CATHAY_GREY      = RGBColor(0x80, 0x80, 0x80)   # 辅助
+CATHAY_LTGREY    = RGBColor(0xD9, 0xD9, 0xD9)   # table borders
+CATHAY_LIGHT_BG  = RGBColor(0xF2, 0xF2, 0xF2)   # 面板底色
 CATHAY_VERY_LIGHT= RGBColor(0xFA, 0xFA, 0xFA)   # 更浅面板底
 
 # Matplotlib chart palette
 CATHAY_COLORS = ['#800000', '#E8B012', '#808080', '#E60000', '#F6DC92', '#404040', '#D9D9D9']
 
-# ── Accent Pairs (color, light_background) for multi-item layouts ──
 CATHAY_ACCENT_PAIRS = [
-    (CATHAY_RED,    CATHAY_SOFT_PINK),  # maroon + soft pink bg
-    (CATHAY_GOLD,   CATHAY_LTGOLD),     # gold + pale gold bg
-    (CATHAY_ACCENT, CATHAY_PINK),       # accent red + pink bg
-    (CATHAY_GREY,   CATHAY_LIGHT_BG),   # grey + light grey bg
+    (CATHAY_RED,    CATHAY_SOFT_PINK),
+    (CATHAY_GOLD,   CATHAY_LTGOLD),
+    (CATHAY_ACCENT, CATHAY_PINK),
+    (CATHAY_GREY,   CATHAY_LIGHT_BG),
 ]
 
 
 # ============================================================================
-# 3. TEXTBOX & PARAGRAPH DEFAULTS
+# 3. TYPOGRAPHY (v3 — calibrated to 阿维塔 reference)
 # ============================================================================
 
-MARGIN_ALL = Mm(2)  # 0.2cm all sides
+MARGIN_ALL      = Mm(2)    # 0.2cm all sides
+DEFAULT_FONT_SIZE = 11.5   # pt — body text (up from 10pt)
+INDENT_LEFT     = Mm(5)    # 0.5cm
+SPACING_BEFORE  = Pt(5)    # 5pt before (up from 4pt)
+SPACING_AFTER   = Pt(0)
+LINE_SPACING_PCT = 130000  # 1.3x (up from 1.2x) — more breathing room
 
-DEFAULT_FONT_SIZE = 10       # pt — body text
-INDENT_LEFT       = Mm(5)    # 0.5cm
-SPACING_BEFORE    = Pt(4)
-SPACING_AFTER     = Pt(0)
-LINE_SPACING_PCT  = 120000   # 1.2x (IC memo standard)
+# Font size hierarchy
+TITLE_FONT_PT     = 20   # page title, dark red bold
+SUBTITLE_FONT_PT  = 14   # section subtitle
+BODY_FONT_PT      = 11.5 # bullet body
+SMALL_FONT_PT     = 10   # table cells, sub-bullets
+CAPTION_FONT_PT   = 8    # source footer, chart labels
+KPI_VALUE_PT      = 18   # KPI number
+KPI_LABEL_PT      = 8    # KPI label
+
+# Chinese font: STKaiti (华文楷体) — matches 阿维塔 reference
+# English font: Calibri
+CN_FONT = "STKaiti"
+EN_FONT = "Calibri"
 
 
 # ============================================================================
-# 4. CONTENT ZONE (mm)
+# 4. SPACING TIERS
 # ============================================================================
 
-CT = 31       # content top
-CB = 181      # content bottom
-CL = 11       # content left
-CW = 233      # content width
+GAP_XS = 2   # header internal padding
+GAP_SM = 4   # same-group element spacing
+GAP_MD = 6   # cross-section spacing
+GAP_LG = 10  # major breathing room
 
-CH  = CB - CT                          # 150mm content height
-GAP_H = 5                             # horizontal gap (mm)
-GAP_V = 3                             # vertical gap (mm)
+GAP_H = GAP_MD  # column gap
+GAP_V = GAP_SM  # row gap
+
+
+# ============================================================================
+# 5. CONTENT ZONE (mm) — accounts for left red line (5mm)
+# ============================================================================
+
+# Layout [4] has a left red vertical line "Rectangle 9" at x=0, w=5mm, full height
+RED_LINE_WIDTH = 5     # mm, built into Layout [4]
+CL = 10                # content left — 5mm line + 5mm spacing (matches template title at 10.6mm)
+CT = 31                # content top (below title zone)
+CB = 181               # content bottom (above source footer)
+CW = 234               # content width (254 - 10 - 10)
+
+CH  = CB - CT          # 150mm content height
+CONTENT_BOTTOM_MM = 175
 
 # Grid layout constants
-FULL   = CW
-HALF   = (CW - GAP_H) / 2
-THIRD  = (CW - GAP_H * 2) / 3
-QUARTER = (CW - GAP_H * 3) / 4
-ONE_THIRD    = (CW - GAP_H) * 1 / 3
-TWO_THIRDS   = (CW - GAP_H) * 2 / 3
-ONE_QUARTER  = (CW - GAP_H) * 1 / 4
-THREE_QUARTER = (CW - GAP_H) * 3 / 4
+FULL   = CW                         # 234
+HALF   = (CW - GAP_H) / 2           # 114.0
+THIRD  = (CW - GAP_H * 2) / 3       # 74.0
+QUARTER = (CW - GAP_H * 3) / 4      # 54.0
+ONE_THIRD    = (CW - GAP_H) * 1 / 3 # 76.0
+TWO_THIRDS   = (CW - GAP_H) * 2 / 3 # 152.0
+ONE_QUARTER  = (CW - GAP_H) * 1 / 4 # 57.0
+THREE_QUARTER = (CW - GAP_H) * 3 / 4 # 171.0
 
 # Column X positions (mm)
-X1 = CL
-X2_HALF  = CL + HALF + GAP_H
-X2_Q34   = CL + ONE_QUARTER + GAP_H
-X2_T23   = CL + ONE_THIRD + GAP_H
-X2_MID   = CL + THIRD + GAP_H
-X3_RIGHT = CL + THIRD * 2 + GAP_H * 2
+X1 = CL                             # 10
+X2_HALF  = CL + HALF + GAP_H        # 130.0
+X2_Q34   = CL + ONE_QUARTER + GAP_H # 73.0
+X2_T23   = CL + ONE_THIRD + GAP_H   # 92.0
+X2_MID   = CL + THIRD + GAP_H       # 90.0
+X3_RIGHT = CL + THIRD * 2 + GAP_H * 2  # 170.0
 
 # Row heights (mm)
-ROW_FULL  = CH
-ROW_HALF  = (CH - GAP_V) / 2
-ROW_THIRD = (CH - GAP_V * 2) / 3
+ROW_FULL  = CH                       # 150
+ROW_HALF  = (CH - GAP_V) / 2        # 73.0
+ROW_THIRD = (CH - GAP_V * 2) / 3    # ~47.33
 
 # Row Y positions (mm)
-Y1 = CT
-Y2_HALF = CT + ROW_HALF + GAP_V
-Y2_MID  = CT + ROW_THIRD + GAP_V
-Y3_BOT  = CT + ROW_THIRD * 2 + GAP_V * 2
+Y1 = CT                             # 31
+Y2_HALF = CT + ROW_HALF + GAP_V     # 108.0
+Y2_MID  = CT + ROW_THIRD + GAP_V    # ~82.33
+Y3_BOT  = CT + ROW_THIRD * 2 + GAP_V * 2  # ~133.67
 
 
 # ============================================================================
-# 5. SOURCE FOOTER CONSTANTS
+# 6. SOURCE FOOTER
 # ============================================================================
 
-SOURCE_FONT_PT       = 7
+SOURCE_FONT_PT       = 8  # up from 7pt
 SOURCE_BOX_HEIGHT_MM = 5
 SOURCE_Y_MM          = 182
 
 
 # ============================================================================
-# 6. CONTENT BOTTOM (for safe_textbox)
-# ============================================================================
-
-CONTENT_BOTTOM_MM = 175
-
-
-# ============================================================================
-# 7. LEGACY INCH-BASED CONSTANTS (backward compat)
-# ============================================================================
-
-CONTENT_LEFT  = 1.0 / 2.54
-CONTENT_TOP   = 2.92 / 2.54
-CONTENT_WIDTH = 23.4 / 2.54
-CONTENT_HEIGHT = 14.6 / 2.54
-SOURCE_LEFT   = 1.0 / 2.54
-SOURCE_TOP    = 18.0 / 2.54
-CONTENT_LEFT_CM = 1.0
-CONTENT_TOP_CM  = 2.92
-
-
-# ============================================================================
-# 8. SECTION ICON CONSTANTS
+# 7. SECTION ICON CONSTANTS
 # ============================================================================
 
 ICON_FINANCIAL = (MSO_SHAPE.ROUNDED_RECTANGLE, 'E8B012')
@@ -159,57 +164,9 @@ _ICON_KEYWORD_MAP = {
 
 
 # ============================================================================
-# 9. CJK WIDTH TABLES
+# 8. CJK CHARACTER DENSITY LIMITS
 # ============================================================================
 
-CJK_CHAR_WIDTH = {
-    7:    2.2,
-    7.5:  2.4,
-    8:    2.5,
-    8.5:  2.7,
-    9:    2.85,
-    9.5:  3.0,
-    10:   3.15,
-    10.5: 3.3,
-    11:   3.5,
-    12:   3.8,
-    14:   4.4,
-    16:   5.0,
-    18:   5.7,
-    20:   6.3,
-    22:   6.9,
-    24:   7.6,
-    26:   8.2,
-    28:   8.8,
-}
-
-LATIN_CHAR_WIDTH = {
-    7:    1.4,
-    7.5:  1.5,
-    8:    1.6,
-    8.5:  1.7,
-    9:    1.8,
-    9.5:  1.9,
-    10:   2.0,
-    10.5: 2.1,
-    11:   2.2,
-    12:   2.4,
-    14:   2.8,
-    16:   3.2,
-    18:   3.6,
-    20:   4.0,
-    22:   4.4,
-    24:   4.8,
-    26:   5.2,
-    28:   5.6,
-}
-
-
-# ============================================================================
-# 10. CJK CHARACTER DENSITY LIMITS (McKinsey pattern)
-# ============================================================================
-
-# Borrowed from McKinsey pattern — prevents text overflow in constrained boxes
 CHAR_DENSITY_LIMITS = {
     5: 15, 10: 40, 15: 80, 20: 130, 25: 190,
     30: 260, 40: 450, 50: 700, 60: 1000, 75: 1200,
@@ -217,7 +174,7 @@ CHAR_DENSITY_LIMITS = {
 
 
 # ============================================================================
-# 11. FONT SIZE GUARD RAILS
+# 9. FONT SIZE GUARD RAILS
 # ============================================================================
 
 MIN_TITLE_FONT_PT = 18
@@ -227,7 +184,7 @@ MIN_SOURCE_FONT_PT = 7
 
 
 # ============================================================================
-# 12. LAYOUT VARIETY RULE
+# 10. LAYOUT VARIETY
 # ============================================================================
 
 MIN_UNIQUE_GRIDS_PER_25_SLIDES = 5
